@@ -5,7 +5,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 interface OverviewPageProps {
   params: {
-    id: number;
+    id: string;
   };
 }
 
