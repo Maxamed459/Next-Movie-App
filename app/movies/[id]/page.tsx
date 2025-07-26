@@ -1,13 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { FaArrowLeft } from "react-icons/fa6";
 
-interface OverviewPageProps {
-  params: {
-    id: string;
-  };
-}
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa6";
 
 interface MovieInfo {
   adult: boolean;
@@ -16,19 +11,22 @@ interface MovieInfo {
   poster_path: string;
   popularity: number;
 }
+
 interface Video {
   type: string;
   site: string;
   key: string;
 }
 
-const Overview = ({ params }: OverviewPageProps) => {
-  const { id } = params;
+export default function MoviePage() {
   const router = useRouter();
-  const [movieData, setMovieData] = React.useState<MovieInfo | null>(null);
+  const { id } = useParams(); // useParams works in Client Component
+  const [movieData, setMovieData] = useState<MovieInfo | null>(null);
   const [trailer, setTrailer] = useState<Video>();
 
   useEffect(() => {
+    if (!id) return;
+
     const fetchMovies = async () => {
       const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
       try {
@@ -44,13 +42,8 @@ const Overview = ({ params }: OverviewPageProps) => {
           }
         );
 
-        if (!response.ok) {
-          return <div>Failed to load movie details</div>;
-        }
-
         const movie = await response.json();
         setMovieData(movie);
-        console.log(movie);
       } catch (error) {
         console.log("Error fetching movie details:", error);
       }
@@ -72,15 +65,12 @@ const Overview = ({ params }: OverviewPageProps) => {
         );
         const videoData = await videoRes.json();
 
-        // Find the official trailer (usually from YouTube)
-        // Find the official trailer (usually from YouTube)
-
         const trailer = videoData.results.find(
           (vid: Video) => vid.type === "Trailer" && vid.site === "YouTube"
         );
         setTrailer(trailer);
       } catch (error) {
-        console.log("Error at: ", error);
+        console.log("Error fetching trailer:", error);
       }
     };
 
@@ -94,10 +84,10 @@ const Overview = ({ params }: OverviewPageProps) => {
         className="mt-4 px-4 py-2 bg-slate-800 text-white rounded mb-4 flex items-center gap-2"
         onClick={() => router.back()}
       >
-        {" "}
         <FaArrowLeft />
-        back{" "}
+        back
       </button>
+
       <div className="flex gap-4 h-full py-4">
         <img
           className="w-1/3 object-fit"
@@ -109,13 +99,14 @@ const Overview = ({ params }: OverviewPageProps) => {
           <h2 className="text-3xl font-medium">{movieData?.original_title}</h2>
           <p className="text-[15px] text-slate-700">{movieData?.overview}</p>
           <p className="text-[15px] text-slate-700">
-            <span className="font-bold">Popularity: </span>{" "}
+            <span className="font-bold">Popularity:</span>{" "}
             {movieData?.popularity}
           </p>
           <p className="text-[15px] text-slate-700">
-            <span className="font-bold">Adult: </span>
+            <span className="font-bold">Adult:</span>{" "}
             {movieData?.adult ? "Yes" : "No"}
           </p>
+
           {trailer ? (
             <iframe
               width="100%"
@@ -133,6 +124,4 @@ const Overview = ({ params }: OverviewPageProps) => {
       </div>
     </div>
   );
-};
-
-export default Overview;
+}
