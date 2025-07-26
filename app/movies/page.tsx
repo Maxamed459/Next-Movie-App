@@ -10,7 +10,7 @@ interface MovieData {
   vote_average: number;
 }
 
-const page = () => {
+const MoviesPage = () => {
   const router = useRouter();
   const [data, setData] = useState<MovieData[]>([]);
   const fetchMovies = async () => {
@@ -71,4 +71,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MoviesPage;
