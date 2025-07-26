@@ -23,69 +23,70 @@ interface Video {
 }
 
 const Overview = ({ params }: OverviewPageProps) => {
+  const { id } = params;
   const router = useRouter();
   const [movieData, setMovieData] = React.useState<MovieInfo | null>(null);
   const [trailer, setTrailer] = useState<Video>();
 
-  const fetchMovies = async () => {
-    const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.id}`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `${apiKey}`,
-          },
-          cache: "force-cache",
-        }
-      );
-
-      if (!response.ok) {
-        return <div>Failed to load movie details</div>;
-      }
-
-      const movie = await response.json();
-      setMovieData(movie);
-      console.log(movie);
-    } catch (error) {
-      console.log("Error fetching movie details:", error);
-    }
-  };
-
-  const fetchTrail = async () => {
-    const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-    try {
-      const videoRes = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.id}/videos`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `${apiKey}`,
-          },
-          cache: "force-cache",
-        }
-      );
-      const videoData = await videoRes.json();
-
-      // Find the official trailer (usually from YouTube)
-      // Find the official trailer (usually from YouTube)
-
-      const trailer = videoData.results.find(
-        (vid: Video) => vid.type === "Trailer" && vid.site === "YouTube"
-      );
-      setTrailer(trailer);
-    } catch (error) {
-      console.log("Error at: ", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchMovies = async () => {
+      const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}`,
+          {
+            method: "GET",
+            headers: {
+              accept: "application/json",
+              Authorization: `${apiKey}`,
+            },
+            cache: "force-cache",
+          }
+        );
+
+        if (!response.ok) {
+          return <div>Failed to load movie details</div>;
+        }
+
+        const movie = await response.json();
+        setMovieData(movie);
+        console.log(movie);
+      } catch (error) {
+        console.log("Error fetching movie details:", error);
+      }
+    };
+
+    const fetchTrail = async () => {
+      const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      try {
+        const videoRes = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/videos`,
+          {
+            method: "GET",
+            headers: {
+              accept: "application/json",
+              Authorization: `${apiKey}`,
+            },
+            cache: "force-cache",
+          }
+        );
+        const videoData = await videoRes.json();
+
+        // Find the official trailer (usually from YouTube)
+        // Find the official trailer (usually from YouTube)
+
+        const trailer = videoData.results.find(
+          (vid: Video) => vid.type === "Trailer" && vid.site === "YouTube"
+        );
+        setTrailer(trailer);
+      } catch (error) {
+        console.log("Error at: ", error);
+      }
+    };
+
     fetchMovies();
     fetchTrail();
-  }, []);
+  }, [id]);
 
   return (
     <div className="flex items-start flex-col max-w-6xl mx-auto mt-4">
