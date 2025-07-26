@@ -38,7 +38,7 @@ const Overview = ({ params }: OverviewPageProps) => {
             method: "GET",
             headers: {
               accept: "application/json",
-              Authorization: `${apiKey}`,
+              Authorization: `Bearer ${apiKey}`,
             },
             cache: "force-cache",
           }
@@ -65,7 +65,7 @@ const Overview = ({ params }: OverviewPageProps) => {
             method: "GET",
             headers: {
               accept: "application/json",
-              Authorization: `${apiKey}`,
+              Authorization: `Bearer ${apiKey}`,
             },
             cache: "force-cache",
           }

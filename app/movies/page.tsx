@@ -23,7 +23,7 @@ const MoviesPage = () => {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `${apiKey}`,
+            Authorization: `Bearer ${apiKey}`,
           },
           cache: "force-cache",
         }
