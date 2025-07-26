@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,36 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header>
+          <div className="flex items-center justify-between p-4 bg-slate-800">
+            <Link href="/">
+              <h1 className="text-xl font-bold text-white cursor-pointer">
+                Next Movie App
+              </h1>
+            </Link>
+            <nav>
+              <ul className="flex space-x-4 text-white">
+                <li>
+                  <Link href="/movies">Movies</Link>
+                </li>
+                <li>
+                  <Link href="/about">About</Link>
+                </li>
+                <li>
+                  <Link href="/contact">Contact</Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="flex space-x-4">
+              <button className="px-4 py-2 bg-slate-300 border-1 border-slate-300 text-slate-800 rounded hover:bg-transparent hover:text-white duration-300">
+                Login
+              </button>
+              <button className="px-4 py-2 bg-transparent border-1 border-slate-300 text-white rounded hover:bg-slate-300 hover:text-slate-800 duration-300">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </header>
         {children}
       </body>
     </html>
