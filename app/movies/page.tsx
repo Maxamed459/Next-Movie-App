@@ -42,30 +42,32 @@ const MoviesPage = () => {
   useEffect(() => {}, [fetchMovies()]);
 
   return (
-    <div className="max-w-6xl mx-auto mt-4">
-      <h1 className="text-3xl font-bold">Popular Movies</h1>
-      <p className="text-[15px] text-gray-600 mb-4">
-        Here you can find a list of popular movies.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {data.map((movie) => (
-          <div
-            className="bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
-            key={movie.title}
-            onClick={() => router.push(`/movies/${movie.id}`)}
-          >
-            <img
-              className="w-full object-cover"
-              loading="lazy"
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-medium">{movie.title}</h2>
-              <p>⭐{movie.vote_average}</p>
+    <div className="bg-linear-to-r from-[#000b58] to-purple-700">
+      <div className="max-w-6xl mx-auto pt-4">
+        <h1 className="text-3xl text-white font-bold">Popular Movies</h1>
+        <p className="text-[15px] text-gray-200 mb-4">
+          Here you can find a list of popular movies.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {data.map((movie) => (
+            <div
+              className="bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+              key={movie.title}
+              onClick={() => router.push(`/movies/${movie.id}`)}
+            >
+              <img
+                className="w-full object-cover"
+                loading="lazy"
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-medium">{movie.title}</h2>
+                <p>⭐{movie.vote_average}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
