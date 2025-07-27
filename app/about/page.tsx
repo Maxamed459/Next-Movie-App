@@ -9,22 +9,26 @@ const page = () => {
             Welcome to the Movie App
           </h1>
           <p className="text-[16px] text-gray-200 leading-6 mt-4 ">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem
-            voluptatem tempora recusandae, quo nisi obcaecati deleniti animi
-            laboriosam, ab a, quos rem commodi nulla alias optio! Explicabo
-            eaque earum porro!Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit. Autem voluptatem tempora recusandae, quo nisi
-            obcaecati deleniti animi laboriosam, ab a, quos rem commodi nulla
-            alias optio! Explicabo eaque earum porro!Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Autem voluptatem tempora recusandae,
-            quo nisi obcaecati deleniti animi laboriosam, ab a, quos rem commodi
-            nulla alias optio! Explicabo eaque earum porro!Lorem ipsum, dolor
-            sit amet consectetur adipisicing elit. Autem voluptatem tempora
-            recusandae, quo nisi obcaecati deleniti animi laboriosam, ab a, quos
-            rem commodi nulla alias optio! Explicabo eaque earum porro!Lorem
-            ipsum, dolor sit amet consectetur adipisicing elit. Autem voluptatem
-            tempora recusandae, quo nisi obcaecati deleniti animi laboriosam, ab
-            a, quos rem commodi nulla alias optio! Explicabo eaque earum porro!
+            This Movie App allows you to explore a wide range of movies, view
+            detailed information, and discover new favorites. If you have any
+            questions, feedback, or need support, please feel free to contact
+            us. We are committed to providing you with the best movie browsing
+            experience.
+          </p>
+          <p className="text-[16px] text-gray-200 leading-6 mt-2">
+            You can reach out to us via email at{" "}
+            <a
+              href="mailto:support@movieapp.com"
+              className="text-purple-300 underline"
+            >
+              support@movieapp.com
+            </a>{" "}
+            or use the contact form below. We value your input and strive to
+            respond as quickly as possible.
+          </p>
+          <p className="text-[16px] text-gray-200 leading-6 mt-2">
+            Thank you for choosing Movie App. Enjoy discovering and sharing your
+            favorite films!
           </p>
         </div>
       </div>
