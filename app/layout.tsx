@@ -28,15 +28,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>
-          <div className="flex items-center justify-between p-4 bg-slate-800">
+        <header className="p-4 sticky top-0 bg-white z-20">
+          <div className="flex items-center justify-between ">
             <Link href="/">
-              <h1 className="text-xl font-bold text-white cursor-pointer">
+              <h1 className="text-xl font-bold text-[#000b58] cursor-pointer">
                 Next Movie App
               </h1>
             </Link>
-            <nav>
-              <ul className="flex space-x-4 text-white">
+            <nav className="hidden md:block">
+              <ul className="flex space-x-4 text-[#000b58] text-[18px]">
                 <li>
                   <Link href="/movies">Movies</Link>
                 </li>
@@ -49,10 +49,10 @@ export default function RootLayout({
               </ul>
             </nav>
             <div className="flex space-x-4">
-              <button className="px-4 py-2 bg-slate-300 border-1 border-slate-300 text-slate-800 rounded hover:bg-transparent hover:text-white duration-300">
+              <button className="px-4 py-2 bg-linear-to-r from-[#000b58] to-purple-700 text-white rounded">
                 Login
               </button>
-              <button className="px-4 py-2 bg-transparent border-1 border-slate-300 text-white rounded hover:bg-slate-300 hover:text-slate-800 duration-300">
+              <button className="px-4 py-2 bg-linear-to-r from-[#000b58] to-purple-700 text-white rounded">
                 Sign Up
               </button>
             </div>
