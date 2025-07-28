@@ -43,7 +43,7 @@ const MoviesPage = () => {
 
   return (
     <div className="bg-linear-to-r from-[#000b58] to-purple-700">
-      <div className="max-w-6xl mx-auto pt-4">
+      <div className="max-w-[90%] mx-auto pt-4">
         <h1 className="text-3xl text-white font-bold">Popular Movies</h1>
         <p className="text-[15px] text-gray-200 mb-4">
           Here you can find a list of popular movies.
