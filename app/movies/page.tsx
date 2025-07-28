@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface MovieData {
+export interface MovieData {
   id: number;
   title: string;
   overview: string;
   poster_path: string;
   vote_average: number;
+  release_date: string;
 }
 
 const MoviesPage = () => {
@@ -48,7 +49,7 @@ const MoviesPage = () => {
         <p className="text-[15px] text-gray-200 mb-4">
           Here you can find a list of popular movies.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10">
           {data.map((movie) => (
             <div
               className="bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
@@ -64,6 +65,7 @@ const MoviesPage = () => {
               <div className="p-4">
                 <h2 className="text-xl font-medium">{movie.title}</h2>
                 <p>⭐{movie.vote_average}</p>
+                <p>🗓️{movie.release_date}</p>
               </div>
             </div>
           ))}
