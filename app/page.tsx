@@ -18,7 +18,7 @@ export default function Home() {
               type="text"
               placeholder="Enter The name of the movie"
               id="searchFilm"
-              className="px-6 py-3 rounded-md bg-gray-200 flex-3/4"
+              className="px-3 py-3 rounded-md bg-gray-200 flex-3/4"
             />
             <button className="px-6 py-3 rounded-lg bg-gray-200 text-black font-medium flex-1/4 hover:bg-gray-300">
               Search
