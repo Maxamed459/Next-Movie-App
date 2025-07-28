@@ -1,18 +1,22 @@
 "use client";
 import React, { useState } from "react";
 import { MovieData } from "./movies/page";
+import { useRouter } from "next/navigation";
 
 interface Movie extends MovieData {
   adult: boolean;
 }
 
 export default function Home() {
-  const [movie, setMovie] = useState<Movie>();
+  const router = useRouter();
+  const [movie, setMovie] = useState<Movie[]>([]);
   const [query, setQuery] = useState<string>("");
   const api = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  const handleClick = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
+  const handleClick = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(event.altKey);
+    if (query.trim() === "") return;
+
     try {
       const res = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
@@ -28,7 +32,6 @@ export default function Home() {
       );
       const data = await res.json();
       setMovie(data.results);
-      console.log(data);
     } catch (error) {
       console.log("Error at fetching data: ", error);
     }
@@ -58,12 +61,6 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyUp={handleClick}
               />
-              <button
-                // onClick={handleClick}
-                className="px-6 py-3 rounded-lg bg-gray-200 text-black font-medium flex-1/4 hover:bg-gray-300"
-              >
-                Search
-              </button>
             </div>
           </form>
         </div>
@@ -73,7 +70,11 @@ export default function Home() {
         {movie ? (
           <>
             {movie.map((mov) => (
-              <div key={mov.id} className="bg-gray-100 shadow-lg">
+              <div
+                key={mov.id}
+                className="bg-gray-100 shadow-lg"
+                onClick={() => router.push(`/movies/${mov.id}`)}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${mov?.poster_path}`}
                   alt=""
