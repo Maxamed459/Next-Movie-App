@@ -4,7 +4,7 @@ A modern movie browsing application built with TypeScript and Next.js.
 
 ## Demo
 
-[View Live Demo](https://text-left-md-text-center.vercel.app)
+[View Live Demo](https://next-movie-app-bquj.vercel.app/)
 
 ## Features
 
@@ -17,7 +17,7 @@ A modern movie browsing application built with TypeScript and Next.js.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/next-movie-app.git
+   git clone https://github.com/Maxamed459/next-movie-app.git
    ```
 2. Install dependencies:
    ```bash
